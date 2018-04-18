@@ -4,3 +4,12 @@ h2 {
 .filmstrip-row {
     margin-top: 20px;
 }
+
+.cardImg {
+    width: 50px;
+}
+
+
+.bzText {
+    white-space: pre;
+}
