@@ -23,6 +23,7 @@ export class ComputerVisionReadTextComponent extends VisionComponent implements 
     showJSON = false;
     textResult: string;
     ocrResult: IOcrResult;
+    results: BusinessCard[] = [];
     apiTitle = 'Computer Vision API - Read Text';
     apiDescription = '';
 
@@ -34,6 +35,7 @@ export class ComputerVisionReadTextComponent extends VisionComponent implements 
 
     ngOnInit() {
         this.businessCards = JSON.parse(localStorage.getItem('cards'));
+        this.results = this.businessCards;
         this.imageList = environment.textImageUrls;
         // this.internetImageUrl = environment.textImageUrls[0];
         this.onInternetUrlSelected();
@@ -107,5 +109,14 @@ export class ComputerVisionReadTextComponent extends VisionComponent implements 
     removeFromList(index: number) {
         this.businessCards.splice(index, 1);
         localStorage.setItem('cards', JSON.stringify(this.businessCards));
+    }
+
+    search(evt: any) {
+        const searchVal = evt.target.value;
+        this.results = this.businessCards.filter(bzCard => bzCard.contents.match(searchVal));
+        console.log(searchVal);
+        if (!searchVal) {
+            this.results = this.businessCards;
+        }
     }
 }

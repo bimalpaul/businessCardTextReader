@@ -55,8 +55,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <h3>My Business Cards</h3>
+                Search: <input (keydown)="search($event)">
+                <br/><br/>
                 <div class="row" >
-                    <div  *ngFor="let bzCard of businessCards; let i = index" class="col-xs-3" style="height: 400px;">
+                    <div  *ngFor="let bzCard of results; let i = index" class="col-xs-3" style="height: 400px;">
                         <img [src]="bzCard.url" style="width: 100%">
                         <p class="bzText">{{bzCard.contents}}</p>
                         <button (click)="removeFromList(i)">Remove</button>
